@@ -1,18 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
 import { CountdownWidget } from 'widget-hub/widgets/CountdownWidget';
+import { useMessageBridge } from './hooks/useMessageBridge';
+import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [msgFromWidget, setMsgFromWidget] = useState("");
+  useMessageBridge({
+    onMessage: (data) => {
+      setMsgFromWidget(data.payload || data);
+    }
+  });
 
   return (
     <>
-     <h1>Count Down Widget</h1> 
-     <CountdownWidget initialDuration={300} onComplete={() => alert('Countdown finished!')} />
+      <h1>React Sample application</h1>
+      <CountdownWidget initialDuration={3}/>
+      <p>Message from Countdown Widget </p>
+      <div><strong>{typeof msgFromWidget === 'object' ? JSON.stringify(msgFromWidget) : msgFromWidget}</strong></div>
     </>
-  )
+  );
 }
 
 export default App;

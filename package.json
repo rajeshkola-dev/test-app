@@ -10,9 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^11.6.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "widget-hub" : "file:../widget-hub"
+    "widget-hub": "file:../widget-hub"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
